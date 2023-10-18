@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
   else if (truthy) { console.log("Using 'else if'!"); }
   if ( truthy || falsy ) { console.log("This should log!"); }
   if (!falsy) { console.log("This should log too!"); }
+  
+  let fooList = [ 1, 2, 3];
+  fooList.forEach(function(item) {
+    console.log(item); 
+  })
 
 
   let DJ = { 
