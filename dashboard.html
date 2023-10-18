@@ -1,51 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>DJ</title>
-    <link rel="stylesheet" type="text/css" href="./app.css">
-  </head>
+
+<head>
+  <meta charset="UTF-8">
+  <title>DJ</title>
+  <link rel="stylesheet" type="text/css" href="./app.css">
+</head>
+
+<body>
+  <script src="external.js"></script>
+  <nav>
+    Welcome Tito!
+  </nav>
+  <main>
+    <div class="container">
+      <fieldset class="dashboard">
+        <legend>Dashboard</legend>
+        <p class="table-header">4:45 PM Playlist</p>
+        <table>
+          <thead>
+            <tr>
+              <th class="col1">Song</th>
+              <th class="col2">Duration (MM:SS)</th>
+              <th class="col3">Artist</th>
+              <th class="col4">Audio</th>
+              <th class="col5">
+                <a href="#" onclick="infoIcon();" style="text-decoration:none;color: inherit;">
+                  <i class="bi bi-info-circle-fill"></i>
+                </a>
+              </th>
+            <tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col1">One Dance</td>
+              <td class="col2">02:23</td>
+              <td class="col3">Drake</td>
+              <td class="col4">
+                <audio controls src="music.mp3">
+                </audio>
+              </td>
+              <td class="col5">
+                <a href="#" id="remove-song" style="text-decoration: none; color: inherit;">
+                  <i class=" bi bi-trash-fill"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table><br>
+        <a href="new_record.html">
+          <button>Add New Record</button>
+        </a>
+      </fieldset>
+    </div>
+    </div>
+  </main>
+
+  <footer style="float:right; font-size:20pt; margin-right: 10%;">
+    SWE 432
+  </footer>
+
   <body>
-    <nav>
-      Welcome Tito!
-    </nav>
-    <main>
-      <div class="container">
-          <fieldset class="dashboard">
-            <legend>Dashboard</legend>
-            <p class="table-header">4:45 PM Playlist</p>
-            <table>
-              <thead>
-                <tr>
-                  <th class="col1">Song</th>
-                  <th class="col2">Duration (MM:SS)</th>
-                  <th class="col3">Artist</th>
-                  <th class="col4">Audio</th>
-                  <th class="col5"><i class="bi bi-info-circle-fill"></i></th>
-                <tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="col1">One Dance</td>
-                  <td class="col2">02:23</td>
-                  <td class="col3">Drake</td>
-                  <td class="col4">
-                    <audio controls src="music.mp3">
-                    </audio>  
-                  </td>
-                  <td class="col5"><i class="bi bi-trash-fill"></i></td>
-                </tr>
-              </tbody>
-            </table><br>
-            <a href="new_record.html">
-              <button>Add New Record</button>
-            </a>
-          </fieldset>
-        </div>
-      </div>
-    </main>
-    <footer style="float:right; font-size:20pt; margin-right: 10%;">
-      SWE 432
-    </footer>
-  <body>
+
 </html>

@@ -1,72 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>DJ</title>
-    <link rel="stylesheet" type="text/css" href="./app.css">
-  </head>
-  <body>
-    <main>
-      <div class="container">
-          <fieldset class="dashboard new-record-flex">
-            <legend>Add To Playlist</legend>
-            <div style="margin-right: 5%;">
-              <p>Available Songs</p>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Record</th>
-                    <th>Artist</th>
-                    <th>Audio</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>One Dance</td>
-                    <td>Drake</td>
-                    <td>
-                      <audio controls src="music.mp3">
-                      </audio>  
-                    </td>
-                    <td><i class="bi bi-plus-circle-fill"></i></td>
-                  </tr>
-                </tbody>
-              </table><br>
-              <a href="dashboard.html">
-                <button>Return To Dashboard</button>
-              </a>
-            </div>
-            <div>
-              <p>Current Playlist</p>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Record</th>
-                    <th>Artist</th>
-                    <th>Audio</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Mountains</td>
-                    <td>Hans Zimmer</td>
-                    <td>
-                      <audio controls src="music.mp3">
-                      </audio>  
-                    </td>
-                    <td><i class="bi bi-x-circle-fill"></i></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </fieldset>
+
+<head>
+  <meta charset="UTF-8">
+  <title>DJ</title>
+  <link rel="stylesheet" type="text/css" href="./app.css">
+</head>
+
+<body>
+  <script src="external.js"></script>
+  <main>
+    <div class="container">
+      <fieldset class="dashboard new-record-flex">
+        <legend>Add To Playlist</legend>
+        <div style="margin-right: 5%;">
+          <p>Available Songs</p>
+          <input type="text" name="searchSong" id="searchSong" style="margin-left:75%;margin-bottom:2%;"
+            onblur="alert('Song was not found!')">
+          <table>
+            <thead>
+              <tr>
+                <th>Record</th>
+                <th>Artist</th>
+                <th>Audio</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>One Dance</td>
+                <td>Drake</td>
+                <td>
+                  <audio controls src="music.mp3">
+                  </audio>
+                </td>
+                <td><a href="#" id="add" style="text-decoration:none;color: inherit;"><i
+                      class="bi bi-plus-circle-fill"></i></a></td>
+              </tr>
+              <td>Mountains</td>
+              <td>Hans Zimmer</td>
+              <td>
+                <audio controls src="music.mp3">
+                </audio>
+              </td>
+              <td>
+                <a href="#" id="invalid-add" style="text-decoration:none;color: inherit;"><i
+                    class="bi bi-plus-circle-fill"></i></a>
+              </td>
+              </tr>
+            </tbody>
+          </table><br>
+          <a href="dashboard.html">
+            <button>Return To Dashboard</button>
+          </a>
         </div>
-      </div>
-    </main>
-    <footer style="float:right; font-size:20pt; margin-right: 10%;">
-      SWE 432
-    </footer>
+        <div>
+          <p>Current Playlist</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Record</th>
+                <th>Artist</th>
+                <th>Audio</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mountains</td>
+                <td>Hans Zimmer</td>
+                <td>
+                  <audio controls src="music.mp3">
+                  </audio>
+                </td>
+                <td><i class="bi bi-x-circle-fill"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </fieldset>
+    </div>
+    </div>
+  </main>
+  <footer style="float:right; font-size:20pt; margin-right: 10%;">
+    SWE 432
+  </footer>
+
   <body>
+
 </html>
