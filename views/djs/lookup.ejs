@@ -1,0 +1,61 @@
+<div class="container">
+  <fieldset class="dashboard new-record-flex">
+    <legend>Add To Playlist</legend>
+    <div style="margin-right: 5%;">
+      <p>Available Songs</p>
+      <input type="text" name="searchSong" id="searchSong" style="margin-left:75%;margin-bottom:2%;"
+        onblur="alert('Song was not found!')">
+      <table>
+        <thead>
+          <tr>
+            <th>Record</th>
+            <th>Artist</th>
+            <th>Audio</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>One Dance</td>
+            <td>Drake</td>
+            <td>
+            </td>
+            <td><a href="#" id="add" style="text-decoration:none;color: inherit;"><i
+                  class="bi bi-plus-circle-fill"></i></a></td>
+          </tr>
+          <td>Mountains</td>
+          <td>Hans Zimmer</td>
+          <td>
+          </td>
+          <td>
+            <a href="#" id="invalid-add" style="text-decoration:none;color: inherit;"><i
+                class="bi bi-plus-circle-fill"></i></a>
+          </td>
+          </tr>
+        </tbody>
+      </table><br>
+    </div>
+    <div>
+      <p>Current Playlist</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Record</th>
+            <th>Artist</th>
+            <th>Audio</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mountains</td>
+            <td>Hans Zimmer</td>
+            <td>
+            </td>
+            <td><i class="bi bi-x-circle-fill"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </fieldset>
+</div>
