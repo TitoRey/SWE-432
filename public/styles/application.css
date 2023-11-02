@@ -1,67 +1,41 @@
 body {
-  background-color: black;
-  color: white;
-  font-family: 'Noto Sans', sans-serif;
-  font-size: 25pt;
+  background-color: #0c0c0c !important;
+  color: white !important;
 }
 
-.container {
-  margin-left: 10%;
-  margin-right: 10%;
+.datatable-container {
   margin-top: 5%;
-  margin-bottom: 5%;
 }
 
-.dashboard {
-  min-height: 100vh;
-  border: 2px #1db99f solid;
-  padding: 5%;
-  font-size: 20pt;
-  background-color: #060505;
+a.theme {
+  background-color: #1db99f !important;
 }
 
-legend {
-  margin-left: 5%;
-  font-weight: bold;
-  font-size: 35pt;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
-  font-size: 15pt;
-}
-
-th,
-td {
-  border-bottom: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
+input {
+  background-color: white !important;
+  margin-bottom: 5% !important;
 }
 
 th {
-  background-color: #1db99f;
+  background-color: #1db99f !important;
+  color: white !important
 }
 
-.table-header {
-  font-size: 25pt;
+td {
+  background-color: black !important;
+  color: white !important;
 }
 
-nav {
-  margin: 2% !important;
+select {
+  background-color: #1db99f !important;
 }
 
-button {
-  background-color: #1db99f;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 17pt;
+table {
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.new-record-flex {
-  display: flex;
+.custom_background {
+  background-color: #1db99f !important;
 }
