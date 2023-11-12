@@ -18,20 +18,11 @@ router.get('/new', (req, res) => {
   res.render('users/form');
 })
 
-// Grabbing a User
-router.get('/:id', (req, res) => { 
-});
-
 // Editing a User
-router.get('/:id/edit', async (req, res) => { 
-  // const user = await User.findById(req.params.id);
-  // console.log(user);
-
+router.get('/:id/edit', getUser, async (req, res) => { 
   try {
-    const user = await User.findById(req.params.id);
-    res.render('users/edit', { user: user })
+    res.render('users/edit', { user: res.user })
   } catch (error) { 
-    console.log(error);
     res.redirect('/users');
   }
 });
@@ -54,11 +45,41 @@ router.post('/', async (req, res) => {
 });
 
 // Updating a User
-router.patch('/:id', (req, res) => {
+// NOTE: Should be a PATCH request but it is not working properly on the form...really weird
+router.post('/:id', async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const user = await User.findByIdAndUpdate(userId, { $set: req.body }, { new: true });
+    res.redirect('/users');
+  } catch ( error ) { 
+    console.log(error);
+    res.redirect(`/users/${userId}/edit`);
+  }
 });
 
 // Deleting a User
-router.delete('/:id', (req, res) => { 
+router.delete('/:id', getUser, (req, res) => { 
+  try { 
+    res.user.remove();
+    res.redirect('/users');
+  } catch (error) { 
+    res.redirect('/users');
+  }
 });
+
+async function getUser(req, res, next) { 
+  let user;
+  try {    
+    user = await User.findById(req.params.id);
+    if (user == null) { 
+      res.redirect('/users');
+    }
+  } catch (error) { 
+    console.log('User not found');
+    res.redirect('/users');
+  }
+  res.user = user;
+  next();
+}
 
 module.exports = router;

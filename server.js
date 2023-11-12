@@ -1,6 +1,5 @@
 const express = require('express'); 
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const app = express();
 
@@ -10,7 +9,7 @@ db.on('error', (error) => console.log(error));
 db.once('open', () => console.log('Connected to Database'));
 
 // Used for grabbing form params
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // Allowing app to accept JSON
 app.use(express.json());
