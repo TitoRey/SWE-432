@@ -7,6 +7,10 @@ body {
   margin-top: 5%;
 }
 
+.form-container { 
+  margin: 10%;
+}
+
 a.theme {
   background-color: #1db99f !important;
 }
@@ -36,6 +40,20 @@ table {
   overflow: hidden;
 }
 
+input { 
+  color: black !important;
+}
+
 .custom_background {
   background-color: #1db99f !important;
+}
+
+.btn { 
+  background-color: #1db99f !important;
+  border-color: #1db99f !important;
+}
+
+fieldset {
+  border: 1px solid white !important;
+  padding: 5% !important;
 }
