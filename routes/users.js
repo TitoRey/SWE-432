@@ -10,7 +10,7 @@ const roleNames = {
 // Grabbing all Users
 router.get('/', async (req, res) => { 
   let users = await User.find();
-  res.render('users/index', { users: users, roleNames: roleNames });
+  res.render('users/index', { users: users, roleNames: roleNames, foo: 'Carol', tito: 'tito'});
 });
 
 // Form for a new User
@@ -29,15 +29,16 @@ router.get('/:id/edit', getUser, async (req, res) => {
 
 // Creating a User
 router.post('/', async (req, res) => {
-  console.log(req.body);
   const user = new User({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password
   })
   try { 
-    const newUser = await user.save();
-    res.status(201).render('users/index');
+    await user.save();
+    console.log(user);
+    console.log(User.find());
+    res.status(201).redirect('users');
   } catch (error) { 
     console.log(error);
     res.redirect('/users/new');

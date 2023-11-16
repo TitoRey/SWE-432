@@ -7,7 +7,7 @@ body {
   margin-top: 5%;
 }
 
-.form-container { 
+.form-container {
   margin: 10%;
 }
 
@@ -40,7 +40,7 @@ table {
   overflow: hidden;
 }
 
-input { 
+input {
   color: black !important;
 }
 
@@ -48,7 +48,7 @@ input {
   background-color: #1db99f !important;
 }
 
-.btn-radio { 
+.btn-radio {
   background-color: #1db99f !important;
   border-color: #1db99f !important;
 }
@@ -56,4 +56,8 @@ input {
 fieldset {
   border: 1px solid white !important;
   padding: 5% !important;
+}
+
+.white-text {
+  color: white !important;
 }

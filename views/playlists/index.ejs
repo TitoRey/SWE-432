@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="datatable-container">
+    <div class="row">
+      <div class="col-md-4">
+        <h1>Your Playlists</h1>
+      </div>
+    </div>
+    <table id="dashboard" class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% playlists.forEach(playlist=> { %>
+          <tr>
+            <td><%- playlist.title %></td>
+            <td><%- playlist.description %></td>
+            <td><a href=<%- `/playlists/${playlist.id}` %> class="btn btn-radio">Open</a></td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-md-3">
+        <a class="btn theme" href="/playlists/new">New Playlist</a>
+      </div>
+    </div>
+  </div>
+</div>

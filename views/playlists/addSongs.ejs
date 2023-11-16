@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="datatable-container">
+    <div class="row">
+      <div class="col-md-4">
+        <h1>
+          Adding to <%= playlist.title %>
+        </h1>
+      </div>
+    </div>
+    <table id="availableMusic" class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Genre</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% songs.forEach(song=> { %>
+          <tr>
+            <td><%- song.title %></td>
+            <td><%- song.artist %></td>
+            <td><%- song.genre %></td>
+            <td>
+              <form action="/playlists/<%= playlist.id %>/song/<%= song.id %>" method="post">
+                <button type="submit" class="btn btn-radio">Add</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-md-3">
+        <a class="btn theme" href="/playlists/<%= playlist.id %>">Back</a>
+      </div>
+    </div>
+  </div>
+</div>
