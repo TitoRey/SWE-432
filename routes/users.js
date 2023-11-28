@@ -10,7 +10,7 @@ const roleNames = {
 // Grabbing all Users
 router.get('/', async (req, res) => { 
   let users = await User.find();
-  res.render('users/index', { users: users, roleNames: roleNames, foo: 'Carol', tito: 'tito'});
+  res.render('users/index', { users: users, roleNames: roleNames });
 });
 
 // Form for a new User

@@ -15,7 +15,7 @@ app.use(session({
 // Setting up the Database
 mongoose.connect("mongodb://localhost/radioStation", { useNewUrlParser: true })
 const db = mongoose.connection;
-db.on('error', (error) => console.log(error));
+db.on('error', (error) => console.log(error)); 
 db.once('open', () => console.log('Connected to Database'));
 
 // Used for grabbing form params
