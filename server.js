@@ -103,6 +103,9 @@ app.use('/playlists', playlistRouter);
 const userRouter = require('./routes/users');
 app.use('/users', userRouter);
 
+const songRouter = require('./routes/songs');
+app.use('/songs', songRouter);
+
 
 // Custom 404 Page
 app.all('*', (req, res) => { 

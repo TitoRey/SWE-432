@@ -32,15 +32,16 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:id/add', async (req, res) => {
-  const playlist = await Playlist.findById(req.params.id).populate('songs');
-  const songs = await Song.find({_id: {$nin: playlist.songs.map(song => song._id) }})
+  const playlist = await Playlist.findById(req.params.id);
+  const playlistSongs = (await PlaylistSong.find({playlist: playlist._id})).map(playlistSong => playlistSong.song);
+  const songs = await Song.find({_id: {$nin: playlistSongs }});
   res.render('playlists/addSongs', { playlist: playlist, songs: songs});
 })
 
 router.get('/:id', async (req, res) => {
-  const playlist = await Playlist.findById(req.params.id).populate('songs');
-  const songs = playlist.songs;
-  console.log(songs);
+  const playlist = await Playlist.findById(req.params.id);
+  const playlistSongs = (await PlaylistSong.find({playlist: playlist._id})).map(playlistSong => playlistSong.song);
+  const songs = await Song.find({ _id: { $in: playlistSongs } });
   res.render('playlists/show', { playlist: playlist, songs: songs});
 })
 
