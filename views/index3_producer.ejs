@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Producer Website</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 20px;
+      margin-left: 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+    }
+
+    .center-heading {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #fff;
+      grid-column: span 2;
+    }
+
+    .section {
+      padding: 20px;
+      border: 1px;
+    }
+
+    select {
+      font-size: 20px;
+      width: 275px;
+      padding: 5px;
+      background-color: #1db99f;
+      color: #fff;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    .center-column {
+      text-align: center;
+    }
+
+    a {
+      font-family: "Noto Sans", sans-serif;
+      font-size: 30px;
+      color: #fff;
+      text-decoration: none;
+      padding-bottom: 30px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    a:hover {
+      color: rgb(0, 255, 13);
+    }
+
+
+    .logout-link {
+      margin-top: 20px;
+      float: right;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1 class="center-heading">Here is the Playlist</h1>
+  <div class="section">
+    <h2 class="center-heading">Playlist</h2>
+    <table>
+      <tr>
+        <th class="center-column">Name</th>
+        <th class="center-column">Duration (min)</th>
+        <th class="center-column">Artist</th>
+        <th class="center-column">Time Slot</th>
+      </tr>
+
+      <% playlist.forEach(function(playlist) { %>
+        <tr>
+          <td class="center-column">
+            <%= playlist.title %>
+          </td>
+          <td class="center-column">
+            <%= playlist.duration %>
+          </td>
+          <td class="center-column">
+            <%= playlist.artist %>
+          </td>
+          <td class="center-column">
+            <%= playlist.timeSlot %>
+          </td>
+        </tr>
+        <% }); %>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Delete a song</h2>
+    <form id="deleteForm">
+      <select id="select1" name="selectedSongToDelete">
+        <% playlist.forEach(function(song) { %>
+          <option value="<%= song._id %>">
+            <%= song.title %>
+          </option>
+          <% }); %>
+      </select>
+      <button type="submit" id="deleteButton">Delete Song</button>
+    </form>
+    <a href="/index2_producer">Add a new song</a>
+  </div>
+  <a href="/" class="logout-link">Log Out</a>
+
+  <script>
+    document.getElementById('deleteForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const button = document.getElementById("deleteButton");
+      button.textContent = "Deleting Song...";
+
+      const formData = new FormData(this);
+      const selectedSongToDelete = formData.get('selectedSongToDelete');
+
+      try {
+
+        const response = await fetch('/deleteSongFromPlaylist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            selectedSongToDelete,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to delete song');
+        }
+
+        console.log('Song deleted successfully:', selectedSongToDelete);
+        
+        window.location.reload();
+
+        button.textContent = "Delete Song";
+      } catch (error) {
+        console.error('Error deleting song:', error);
+        button.textContent = "Delete Song";
+      }
+    });
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

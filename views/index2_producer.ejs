@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Producer Website</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 20px;
+      margin-left: 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+    }
+
+    .center-heading {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #fff;
+      grid-column: span 2;
+    }
+
+    .section {
+      padding: 20px;
+      border: 1px;
+    }
+
+    select {
+      font-size: 20px;
+      width: 275px;
+      padding: 5px;
+      background-color: #1db99f;
+      color: #fff;
+      margin-right: 30px;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    .center-column {
+      text-align: center;
+    }
+
+    button {
+      font-size: 60px;
+      padding: 10px;
+      margin-top: 30px;
+      background-color: #1db99f;
+      color: #fff;
+    }
+
+    button:hover {
+      background-color: rgb(0, 255, 13);
+    }
+
+    a {
+      font-size: 16px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: rgb(0, 255, 13);
+    }
+
+    .logout-link {
+      margin-top: 20px;
+      float: right;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1 class="center-heading">Select the songs</h1>
+  <div class="section">
+    <h2 class="center-heading">Available songs</h2>
+    <table>
+      <tr>
+        <th class="center-column">Name</th>
+        <th class="center-column">Duration (min)</th>
+        <th class="center-column">Artist</th>
+      </tr>
+      <% songs.forEach(function(song) { %>
+        <tr>
+          <td class="center-column">
+            <%= song.title %>
+          </td>
+          <td class="center-column">
+            <%= song.duration %>
+          </td>
+          <td class="center-column">
+            <%= song.artist %>
+          </td>
+        </tr>
+        <% }); %>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Select the song</h2>
+    <form id="playlistForm">
+      <select id="select1" name="selectedSong">
+        <% songs.forEach(function(song) { %>
+          <option value="<%= song.title %>" data-id="<%= song._id %>" data-duration="<%= song.duration %>"
+            data-artist="<%= song.artist %>">
+            <%= song.title %>
+          </option>
+          <% }); %>
+      </select>
+
+      <h2>Select the time slot</h2>
+      <select id="select2" name="selectedTimeSlot">
+        <option value="8:00 PM">8:00 PM</option>
+        <option value="8:10 PM">8:10 PM</option>
+        <option value="8:20 PM">8:20 PM</option>
+        <option value="8:30 PM">8:30 PM</option>
+        <option value="8:40 PM">8:40 PM</option>
+        <option value="8:50 PM">8:50 PM</option>
+      </select>
+      <button type="submit" id="Playlist_Button">Add to Playlist</button>
+    </form>
+  </div>
+  <a href="/index3_producer">Next Page</a>
+  <a href="/" class="logout-link">Log Out</a>
+
+  <script>
+    document.getElementById('playlistForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const button = document.getElementById("Playlist_Button");
+      button.textContent = "Adding to Playlist...";
+
+      const selectedOption = document.getElementById('select1').options[document.getElementById('select1').selectedIndex];
+      const selectedSong = selectedOption.value;
+      const selectedTimeSlot = document.getElementById('select2').value;
+      const songId = selectedOption.getAttribute('data-id');
+      const songDuration = selectedOption.getAttribute('data-duration');
+      const songArtist = selectedOption.getAttribute('data-artist');
+
+      console.log('Form data:', selectedSong, selectedTimeSlot, songId, songDuration, songArtist);
+
+      fetch('/addSongToPlaylist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          selectedSong,
+          selectedTimeSlot,
+          songId,
+          songDuration,
+          songArtist,
+        }),
+      })
+
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setTimeout(function () {
+            button.textContent = "Add to Playlist";
+          }, 1000);
+        })
+        .catch(error => {
+          console.error('Error adding song to playlist:', error);
+          button.textContent = "Add to Playlist";
+        });
+    });
+
+
+
+  </script>
+</body>
+
+
+</html>

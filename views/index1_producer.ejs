@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Producer Website</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 20px;
+      margin-left: 50px;
+    }
+
+    .center-heading {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    select {
+      font-size: 20px;
+      width: 275px;
+      padding: 5px;
+      margin: 50px 0;
+      background-color: #1db99f;
+      color: #fff;
+    }
+
+    img {
+      width: 550px;
+    }
+
+    .image-container {
+      float: right;
+      margin-right: 30px;
+    }
+
+    .caption {
+      font-style: italic;
+      text-align: right;
+      margin-top: 10px;
+      margin-right: 175px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+    }
+
+    a {
+      font-size: 16px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: rgb(0, 255, 13);
+    }
+
+    .logout-link {
+      margin-top: 20px;
+      float: right;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="center-heading">DJ Selection</h1>
+  <label>Select the DJ:</label>
+  <select id="select1" name="selectedDJ">
+    <% djList.forEach(function(dj) { %>
+      <option value="<%= dj._id %>">
+        <%= dj.name %>
+      </option>
+      <% }); %>
+  </select>
+  <div class="container">
+    <p id="selectedDJDescription"></p>
+    <img class="image-container"
+      src="https://media.wired.com/photos/63f91c358695ea54b16e31d1/master/w_1920,c_limit/Spotify%E2%80%99s-AI-DJ-Is-Here-to-(Algorithmically)-Rock-Your-Party-Gear-GettyImages-586919237.jpg">
+  </div>
+  <figcaption class="caption">Photo of the DJ</figcaption>
+  <a href="/index2_producer" id="nextPageLink">Next Page</a>
+  <a href="/" class="logout-link">Log Out</a>
+  <script>
+    document.getElementById('select1').onchange = function () {
+      var selectedDJId = this.value;
+
+      fetch(`/getDJDescription/${selectedDJId}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('selectedDJDescription').innerText = data.description;
+        })
+        .catch(error => console.error('Error al obtener la descripción del DJ', error));
+
+      document.cookie = `selectedDJ=${encodeURIComponent(this.options[this.selectedIndex].text)}; path=/`;
+    };
+
+
+
+
+
+  </script>
+
+
+
+</body>
+
+</html>
