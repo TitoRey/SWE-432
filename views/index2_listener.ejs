@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Website</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-container {
+      position: relative;
+      height: 50vh;
+      background-image: url('https://images.unsplash.com/photo-1568973290903-850cb66e92c9?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYxODcwODR8&ixlib=rb-4.0.3&q=85');
+      background-size: cover;
+      background-position: bottom;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 20px;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+      background-color: #000;
+      padding: 30px;
+      font-family: "Noto Sans", sans-serif;
+      color: #fff;
+    }
+
+    .section {
+      padding: 20px;
+      border: 1px solid #fff;
+      border-radius: 10px;
+    }
+
+    select {
+      font-size: 20px;
+      width: 275px;
+      padding: 5px;
+      background-color: #1db99f;
+      color: #fff;
+      margin-right: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      padding: 30px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border: 1px solid #fff;
+    }
+
+    th {
+      background-color: #1db99f;
+    }
+
+    button {
+      font-size: 30px;
+      padding: 10px;
+      margin-top: 80px;
+      border-radius: 20px;
+      background-color: #1db99f;
+      color: #fff;
+    }
+
+    button:hover {
+      background-color: rgb(0, 255, 13);
+    }
+
+    a {
+      font-size: 16px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: rgb(0, 255, 13);
+    }
+
+    .logout-link {
+      margin-top: 20px;
+      float: right;
+    }
+
+    #button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1db99f;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+    #button:hover {
+      background-color: rgb(0, 255, 13);
+}
+
+    #playlist-title-container {
+            text-align: left;
+            margin-bottom: 20px;
+            margin-left: 50px;
+        }
+
+        #playlist-title {
+            font-size: 28px;
+        }
+
+        #playlist-section {
+            margin: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 70px; /* we add margin to the bottom to see the panel and last containers at the same time */
+        }
+
+        .playlist-box {
+            width: 27%;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .playlist-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .playlist-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .playlist-image {
+            width: 70%; 
+            height: auto; 
+            border-radius: 5px; 
+        }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <header>
+      <h1>Add Songs to your playlist</h1>
+    </header>
+  </div>
+
+  <div class="content">
+
+    <div class="section">
+      <h2>Select any song</h2>
+      <form id="playlistForm">
+        <select id="select1" name="selectedSong">
+          <% songs.forEach(function(song) { %>
+            <option value="<%= song.title %>" data-id="<%= song._id %>" data-duration="<%= song.duration %>"
+              data-artist="<%= song.artist %>">
+              <%= song.title %>
+            </option>
+          <% }); %>
+        </select>
+        
+        <button type="submit" id="Playlist_Button">Add to Playlist</button>
+
+        <h1>Playlist:</h1>
+        <div id="playlist-section">
+          
+          <div class="playlist-box">
+              <div class="playlist-title">Trance</div>
+            <img class="playlist-image" src=https://images.unsplash.com/photo-1547669270-e1a9dcd106b6?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTY0NTQxODJ8&ixlib=rb-4.0.3&q=85 alt="Trance Image">
+              <div class="playlist-controls">
+                <a href="/index3_listener" >Go to playlist</a>
+                
+              </div>
+          </div>
+        </div>
+        
+        
+      </form>
+      <a href="/" class="logout-link" id = "button" >Log Out</a>
+    </div>
+  
+    <div class="section">
+      <h2 class="center-heading">Recommended songs</h2>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Duration (min)</th>
+          <th>Artist</th>
+        </tr>
+        <% songs.forEach(function(song) { %>
+          <tr>
+            <td><%= song.title %></td>
+            <td><%= song.duration %></td>
+            <td><%= song.artist %></td>
+          </tr>
+        <% }); %>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('playlistForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const button = document.getElementById("Playlist_Button");
+      button.textContent = "Adding to Playlist...";
+
+      const selectedOption = document.getElementById('select1').options[document.getElementById('select1').selectedIndex];
+      const selectedSong = selectedOption.value;
+      const songId = selectedOption.getAttribute('data-id');
+      const songDuration = selectedOption.getAttribute('data-duration');
+      const songArtist = selectedOption.getAttribute('data-artist');
+
+      console.log('Form data:', selectedSong, songId, songDuration, songArtist);
+
+      fetch('/addSongToPlaylist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          selectedSong,
+          songId,
+          songDuration,
+          songArtist,
+        }),
+      })
+
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setTimeout(function () {
+            button.textContent = "Add to Playlist";
+          }, 1000);
+        })
+        .catch(error => {
+          console.error('Error adding song to playlist:', error);
+          button.textContent = "Add to Playlist";
+        });
+    });
+  </script>
+</body>
+
+</html>
