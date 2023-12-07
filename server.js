@@ -97,14 +97,20 @@ app.get('/', (req, res) => {
   res.redirect('/users/signin');
 });
 
-const playlistRouter = require('./routes/playlists');
-app.use('/playlists', playlistRouter);
+const playlistRouter = require('./routes/DJ_playlists');
+app.use('/DJ_playlists', playlistRouter);
 
 const userRouter = require('./routes/users');
 app.use('/users', userRouter);
 
 const songRouter = require('./routes/songs');
 app.use('/songs', songRouter);
+
+const listenerRouter = require('./routes/listener');
+app.use('/listeners', listenerRouter);
+
+const producerRouter = require('./routes/producers');
+app.use('/producers', producerRouter);
 
 
 // Custom 404 Page

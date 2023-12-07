@@ -106,9 +106,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/iteration5', {
 
 
 
-app.get('/', (req, res) => {
-  res.render('index_producer');
-});
+
 
 
 app.post('/', async (req, res) => {
@@ -186,11 +184,9 @@ app.post('/', async (req, res) => {
 });
 
 
-
-
 app.get('/index1_producer', async (req, res) => {
   try {
-    const djList = await DJ.find();
+    
 
     res.render('index1_producer', { djList });
   } catch (error) {
@@ -214,17 +210,7 @@ app.get('/getDJDescription/:id', async (req, res) => {
 });
 
 
-app.get('/index2_producer', async (req, res) => {
-  try {
 
-    const songs = await Song.find();
-
-    res.render('index2_producer', { songs });
-  } catch (error) {
-    console.error('Error fetching songs list:', error);
-    res.status(500).send('Internal Server Error: ' + error.message);
-  }
-});
 
 
 app.post('/addSongToPlaylist', async (req, res) => {

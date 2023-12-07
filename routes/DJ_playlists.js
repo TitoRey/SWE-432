@@ -7,12 +7,12 @@ const PlaylistSong = require('../models/playlistSong');
 router.get('/', async (req, res) => { 
   const user = req.session.user._id;
   const playlists = await Playlist.find({user: user});
-  res.render('playlists/index', { playlists: playlists});
+  res.render('DJ_playlists/index', { playlists: playlists});
 });
 
 // New Playlist
 router.get('/new', (req, res) => { 
-  res.render('playlists/new');
+  res.render('DJ_playlists/new');
 });
 
 // Creating a Playlist
@@ -24,10 +24,10 @@ router.post('/', async (req, res) => {
   })
   try { 
     await playlist.save();
-    res.status(201).redirect('/playlists');
+    res.status(201).redirect('/DJ_playlists');
   } catch (error) { 
     console.log(error);
-    res.redirect('/playlists/new');
+    res.redirect('/DJ_playlists/new');
   }
 });
 
@@ -35,14 +35,14 @@ router.get('/:id/add', async (req, res) => {
   const playlist = await Playlist.findById(req.params.id);
   const playlistSongs = (await PlaylistSong.find({playlist: playlist._id})).map(playlistSong => playlistSong.song);
   const songs = await Song.find({_id: {$nin: playlistSongs }});
-  res.render('playlists/addSongs', { playlist: playlist, songs: songs});
+  res.render('DJ_playlists/addSongs', { playlist: playlist, songs: songs});
 })
 
 router.get('/:id', async (req, res) => {
   const playlist = await Playlist.findById(req.params.id);
   const playlistSongs = (await PlaylistSong.find({playlist: playlist._id})).map(playlistSong => playlistSong.song);
   const songs = await Song.find({ _id: { $in: playlistSongs } });
-  res.render('playlists/show', { playlist: playlist, songs: songs});
+  res.render('DJ_playlists/show', { playlist: playlist, songs: songs});
 })
 
 router.post('/:playlistId/song/:songId', async (req, res) => {
@@ -53,7 +53,7 @@ router.post('/:playlistId/song/:songId', async (req, res) => {
 
   try {
     await playlistSong.save();
-    res.status(201).redirect(`/playlists/${req.params.playlistId}/add`);
+    res.status(201).redirect(`/DJ_playlists/${req.params.playlistId}/add`);
   } catch (error) {
     console.log(error);
     res.redirect('/users');
@@ -61,7 +61,7 @@ router.post('/:playlistId/song/:songId', async (req, res) => {
 })
 
 router.get('/lookup', (req, res) => {
-  res.render('playlists/lookup', { name: 'Tito'});
+  res.render('DJ_playlists/lookup', { name: 'Tito'});
 });
 
 module.exports = router;

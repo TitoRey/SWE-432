@@ -74,7 +74,7 @@
   <h1 class="center-heading">DJ Selection</h1>
   <label>Select the DJ:</label>
   <select id="select1" name="selectedDJ">
-    <% djList.forEach(function(dj) { %>
+    <% djs.forEach(function(dj) { %>
       <option value="<%= dj._id %>">
         <%= dj.name %>
       </option>
@@ -86,8 +86,7 @@
       src="https://media.wired.com/photos/63f91c358695ea54b16e31d1/master/w_1920,c_limit/Spotify%E2%80%99s-AI-DJ-Is-Here-to-(Algorithmically)-Rock-Your-Party-Gear-GettyImages-586919237.jpg">
   </div>
   <figcaption class="caption">Photo of the DJ</figcaption>
-  <a href="/index2_producer" id="nextPageLink">Next Page</a>
-  <a href="/" class="logout-link">Log Out</a>
+  <a href="producers/index2_producer" id="nextPageLink">Next Page</a>
   <script>
     document.getElementById('select1').onchange = function () {
       var selectedDJId = this.value;

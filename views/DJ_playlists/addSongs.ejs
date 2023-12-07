@@ -3,13 +3,14 @@
     <div class="row">
       <div class="col-md-4">
         <h1>
-          <%= playlist.title %>
+          Adding to <%= playlist.title %>
         </h1>
       </div>
     </div>
-    <table id="playlistSongs" class="table">
+    <table id="availableMusic" class="table">
       <thead>
         <tr>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -18,6 +19,7 @@
           <th>Title</th>
           <th>Artist</th>
           <th>Genre</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -26,13 +28,18 @@
             <td><%- song.title %></td>
             <td><%- song.artist %></td>
             <td><%- song.genre %></td>
+            <td>
+              <form action="/DJ_playlists/<%= playlist.id %>/song/<%= song.id %>" method="post">
+                <button type="submit" class="btn btn-radio">Add</button>
+              </form>
+            </td>
           </tr>
           <% }) %>
       </tbody>
     </table>
     <div class="row">
       <div class="col-md-3">
-        <a class="btn theme" href="/playlists/<%= playlist.id %>/add">Add to Playlist</a>
+        <a class="btn theme" href="/DJ_playlists/<%= playlist.id %>">Back</a>
       </div>
     </div>
   </div>
